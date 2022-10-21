@@ -4,8 +4,8 @@
 # It uses Hyperfine to run all of the experiemnts sequentially.
 set -exuo pipefail
 
-readonly WARMUP_RUNS="0"
-readonly SAMPLE_SIZE="1"
+readonly WARMUP_RUNS="1"
+readonly SAMPLE_SIZE="3"
 readonly EXPERIMENTS="control,patch"
 
 function main {
