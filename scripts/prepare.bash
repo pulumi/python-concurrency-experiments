@@ -13,10 +13,10 @@ function build_python_runtime() {
     popd
 }
 
-function checkout_master() {
+function checkout_latest() {
     pushd $(pwd)
     cd ~/workspace/pulumi/pulumi
-    git checkout master
+    git checkout v3.43.1
     make ensure && make build && make install
     popd
 }
@@ -34,7 +34,7 @@ function main {
   if [ "${PROJECT_DIR}" == "control" ]
   then
     PULUMI_EXEC="${PULUMI}"
-    checkout_master
+    checkout_latest
     build_python_runtime
   else
     PULUMI_EXEC="${PULUMI_DEV}"

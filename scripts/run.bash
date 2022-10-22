@@ -5,7 +5,7 @@
 set -exuo pipefail
 
 readonly WARMUP_RUNS="1"
-readonly SAMPLE_SIZE="3"
+readonly SAMPLE_SIZE="10"
 readonly EXPERIMENTS="control,patch"
 
 function main {
@@ -14,7 +14,7 @@ function main {
     --runs="${SAMPLE_SIZE}" \
     --parameter-list "group" "${EXPERIMENTS}" \
     --prepare="./scripts/prepare.bash {group}" \
-    --show-output \
+    --export-json "parallel-patch.json" \
     "./scripts/up.bash {group}"
 }
 
