@@ -1,0 +1,8 @@
+name: ls
+description: A minimal AWS Python Pulumi program
+runtime:
+    name: python
+    options:
+        virtualenv: venv
+backend:
+    url: file:///Users/robbiemckinstry/workspace/pulumi/python-concurrency-experiments/pulumi-file/statefile

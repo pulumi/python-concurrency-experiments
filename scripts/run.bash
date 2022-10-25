@@ -4,9 +4,10 @@
 # It uses Hyperfine to run all of the experiemnts sequentially.
 set -exuo pipefail
 
-readonly WARMUP_RUNS="1"
-readonly SAMPLE_SIZE="20"
-readonly EXPERIMENTS="control,ts-control,patch,checkpoint,jsonpatch,combined"
+readonly WARMUP_RUNS="0"
+readonly SAMPLE_SIZE="1"
+# readonly EXPERIMENTS="control,ts-control,patch,checkpoint,jsonpatch,combined"
+readonly EXPERIMENTS="terraform-remote,terraform-cloud,terraform-file,pulumi-file"
 
 function main {
   hyperfine \
@@ -14,7 +15,8 @@ function main {
     --runs="${SAMPLE_SIZE}" \
     --parameter-list "group" "${EXPERIMENTS}" \
     --prepare="./scripts/prepare.bash {group}" \
-    --export-json "six-way-experiment.json" \
+    --show-output \
+    --export-json "eight-way-experiment.json" \
     "./scripts/up.bash {group}"
 }
 
