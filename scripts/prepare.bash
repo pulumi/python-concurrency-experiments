@@ -6,6 +6,7 @@ readonly PULUMI=/opt/homebrew/bin/pulumi
 readonly PULUMI_DEV=/Users/robbiemckinstry/.pulumi-dev/bin/pulumi
 readonly GROUP="$1"
 readonly TERRAFORM=/opt/homebrew/bin/terraform
+readonly DEFAULT_PARALLELISM=214783647
 
 function build_python_runtime() {
     pushd $(pwd)
@@ -99,6 +100,16 @@ function main {
     PULUMI_EXEC="${PULUMI_DEV}"
     checkout_branch
     build_python_runtime
+  elif [ "${GROUP}" == "pulumi-s3" ]
+  then
+    PROJECT_DIR="pulumi-file"
+    export PULUMI_CONFIG_PASSPHRASE=""
+    unset PULUMI_EXPERIMENTAL
+    unset PULUMI_SKIP_CHECKPOINTS
+    unset PULUMI_OPTIMIZED_CHECKPOINT_PATCH
+    PULUMI_EXEC="${PULUMI_DEV}"
+    checkout_branch
+    build_python_runtime
   elif [ "${GROUP}" == "terraform-remote" ]
   then
     PROJECT_DIR="terraform-remote"
@@ -129,13 +140,16 @@ function main {
   cd "${PROJECT_DIR}"
   if [ "${GROUP}" == "terraform-remote" ]
   then
-    $TERRAFORM destroy -auto-approve
+    $TERRAFORM destroy -auto-approve -parallelism="${DEFAULT_PARALLELISM}"
   elif [ "${GROUP}" == "terraform-cloud" ]
   then
-    $TERRAFORM destroy -auto-approve
+    $TERRAFORM destroy -auto-approve -parallelism="${DEFAULT_PARALLELISM}"
   elif [ "${GROUP}" == "terraform-file" ]
   then
-    $TERRAFORM destroy -auto-approve
+    $TERRAFORM destroy -auto-approve -parallelism="${DEFAULT_PARALLELISM}"
+  elif [ "${GROUP}" == "terraform-s3" ]
+  then
+    $TERRAFORM destroy -auto-approve -parallelism="${DEFAULT_PARALLELISM}"
   else
     $PULUMI_EXEC destroy --yes --non-interactive --stack=dev --skip-preview || true
   fi

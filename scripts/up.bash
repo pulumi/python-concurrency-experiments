@@ -63,12 +63,21 @@ function run_project {
     export PULUMI_SKIP_CHECKPOINTS="true"
     export PULUMI_OPTIMIZED_CHECKPOINT_PATCH="true"
     PULUMI_EXEC="${PULUMI_DEV}"
+  elif [ "${GROUP}" == "pulumi-s3" ]
+  then
+    PROJECT_DIR="pulumi-s3"
+    export PULUMI_CONFIG_PASSPHRASE=""
+    unset PULUMI_EXPERIMENTAL
+    unset PULUMI_SKIP_CHECKPOINTS
+    unset PULUMI_OPTIMIZED_CHECKPOINT_PATCH
+    PULUMI_EXEC="${PULUMI_DEV}"
   elif [ "${GROUP}" == "terraform-remote" ]
   then
     PROJECT_DIR="terraform-remote"
     unset PULUMI_CONFIG_PASSPHRASE
     unset PULUMI_EXPERIMENTAL
     unset PULUMI_SKIP_CHECKPOINTS
+    unset PULUMI_OPTIMIZED_CHECKPOINT_PATCH
     PULUMI_EXEC=""
   elif [ "${GROUP}" == "terraform-cloud" ]
   then
@@ -86,10 +95,19 @@ function run_project {
     unset PULUMI_SKIP_CHECKPOINTS
     unset PULUMI_OPTIMIZED_CHECKPOINT_PATCH
     PULUMI_EXEC=""
+  elif [ "${GROUP}" == "terraform-s3" ]
+  then
+    PROJECT_DIR="terraform-s3"
+    unset PULUMI_CONFIG_PASSPHRASE
+    unset PULUMI_EXPERIMENTAL
+    unset PULUMI_SKIP_CHECKPOINTS
+    unset PULUMI_OPTIMIZED_CHECKPOINT_PATCH
+    PULUMI_EXEC=""
   fi
 
   pushd $(pwd)
   cd "${PROJECT_DIR}"
+  echo "Collecting a sample for ${GROUP}."
   
   if [ "${GROUP}" == "terraform-remote" ]
   then
@@ -98,6 +116,9 @@ function run_project {
   then
     $TERRAFORM apply -auto-approve -parallelism="${DEFAULT_PARALLELISM}"
   elif [ "${GROUP}" == "terraform-file" ]
+  then
+    $TERRAFORM apply -auto-approve -parallelism="${DEFAULT_PARALLELISM}"
+  elif [ "${GROUP}" == "terraform-s3" ]
   then
     $TERRAFORM apply -auto-approve -parallelism="${DEFAULT_PARALLELISM}"
   else

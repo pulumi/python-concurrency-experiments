@@ -7,7 +7,8 @@ set -exuo pipefail
 readonly WARMUP_RUNS="0"
 readonly SAMPLE_SIZE="1"
 # readonly EXPERIMENTS="control,ts-control,patch,checkpoint,jsonpatch,combined"
-readonly EXPERIMENTS="terraform-remote,terraform-cloud,terraform-file,pulumi-file"
+# readonly EXPERIMENTS="terraform-remote,terraform-cloud,terraform-file,pulumi-file"
+readonly EXPERIMENTS="terraform-s3,pulumi-s3,terraform-remote,terraform-cloud,terraform-file,pulumi-file"
 
 function main {
   hyperfine \

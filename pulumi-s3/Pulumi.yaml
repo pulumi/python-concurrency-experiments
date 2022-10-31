@@ -1,0 +1,8 @@
+name: ls
+description: A minimal AWS Python Pulumi program
+runtime:
+    name: python
+    options:
+        virtualenv: venv
+backend:
+    url: s3://mckinstry-experiment-pu?region=us-east-2&awssdk=v2
