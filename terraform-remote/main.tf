@@ -9,13 +9,18 @@ terraform {
 }
 
 provider "aws" {
-  region  = "us-east-1"
+  region  = "us-east-2"
 }
 
 // SQS 100 instances with a numbered name.
 resource "aws_sqs_queue" "sqs-queue" {
   name = "queue-${count.index}"
   count = 100
+  tags = {
+    owner = "robbie-mckinstry"
+    anyone-can-delete-me = "true"
+    python-concurrency-experiment = "true"
+  }
 }
 
 
@@ -23,4 +28,9 @@ resource "aws_sqs_queue" "sqs-queue" {
 resource "aws_sns_topic" "sns-topic" {
   name = "topic-${count.index}"
   count = 100
+  tags = {
+    owner = "robbie-mckinstry"
+    anyone-can-delete-me = "true"
+    python-concurrency-experiment = "true"
+  }
 }

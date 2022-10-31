@@ -1,3 +1,3 @@
 encryptionsalt: v1:/Vq2LfcFSMA=:v1:NeCM7alisRMVd523:Je16HWbLGE03ECLgaFc6sVZ43N9Kyw==
 config:
-  aws:region: us-east-1
+  aws:region: us-east-2
