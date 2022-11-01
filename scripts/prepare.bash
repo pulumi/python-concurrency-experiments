@@ -102,7 +102,7 @@ function main {
     build_python_runtime
   elif [ "${GROUP}" == "pulumi-s3" ]
   then
-    PROJECT_DIR="pulumi-file"
+    PROJECT_DIR="pulumi-s3"
     export PULUMI_CONFIG_PASSPHRASE=""
     unset PULUMI_EXPERIMENTAL
     unset PULUMI_SKIP_CHECKPOINTS
@@ -129,6 +129,14 @@ function main {
   elif [ "${GROUP}" == "terraform-file" ]
   then
     PROJECT_DIR="terraform-file"
+    unset PULUMI_CONFIG_PASSPHRASE
+    unset PULUMI_EXPERIMENTAL
+    unset PULUMI_SKIP_CHECKPOINTS
+    unset PULUMI_OPTIMIZED_CHECKPOINT_PATCH
+    PULUMI_EXEC=""
+  elif [ "${GROUP}" == "terraform-s3" ]
+  then
+    PROJECT_DIR="terraform-s3"
     unset PULUMI_CONFIG_PASSPHRASE
     unset PULUMI_EXPERIMENTAL
     unset PULUMI_SKIP_CHECKPOINTS

@@ -8,7 +8,8 @@ readonly WARMUP_RUNS="0"
 readonly SAMPLE_SIZE="1"
 # readonly EXPERIMENTS="control,ts-control,patch,checkpoint,jsonpatch,combined"
 # readonly EXPERIMENTS="terraform-remote,terraform-cloud,terraform-file,pulumi-file"
-readonly EXPERIMENTS="terraform-s3,pulumi-s3,terraform-remote,terraform-cloud,terraform-file,pulumi-file"
+# readonly EXPERIMENTS="terraform-s3,pulumi-s3,terraform-remote,terraform-cloud,terraform-file,pulumi-file"
+readonly EXPERIMENTS="terraform-s3,pulumi-s3"
 
 function main {
   hyperfine \
@@ -17,7 +18,7 @@ function main {
     --parameter-list "group" "${EXPERIMENTS}" \
     --prepare="./scripts/prepare.bash {group}" \
     --show-output \
-    --export-json "eight-way-experiment.json" \
+    --export-json "big-experiment.json" \
     "./scripts/up.bash {group}"
 }
 
