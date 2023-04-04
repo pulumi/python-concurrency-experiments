@@ -1,0 +1,59 @@
+name: Run Performance Metrics Cron Job
+on:
+  workflow_dispatch:
+    inputs:
+      experiment:
+        description: 'The name of the experiment to run'
+        required: true
+        type: choice
+        options:
+        - tsnode
+      warmups:
+        description: 'The number of warmup runs'
+        required: true
+        type: string
+        default: "3"
+      samples:
+        description: 'The number of samples collected'
+        required: true
+        type: string
+        default: "20"
+      groups:
+        description: "The groups to include in this experiment, comma separated."
+        required: true
+        type: string
+      data:
+        description: "The file path for the captured data."
+        default: "experimental-data.json"
+        type: string
+        required: true
+
+env:
+  HYPERFINE_VERSION: v1.16.1
+
+jobs:
+  run-experiment:
+    runs-on: ubuntu-latest
+    steps:
+    - name: "Install Hyperfine"
+      run: wget https://github.com/sharkdp/hyperfine/releases/download/${{ env.HYPERFINE_VERSION }}/hyperfine_1.16.1_amd64.deb && sudo dpkg -i hyperfine_1.16.1_amd64.deb
+    - name: "Download Pulumi Source"
+      uses: actions/checkout@v3
+      with:
+        repository: 'pulumi/pulumi'
+    - name: "Run Experiment"
+      run: ./scripts/ci.bash
+      env:
+        WARMUP_RUNS: ${{ inputs.warmups }}
+        SAMPLES: ${{ inputs.samples }}
+        EXPERIMENT: ${{ inputs.experiment }}
+        GROUPS: ${{ inputs.groups }}
+        DATA_FILE: ${{ inputs.data }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    - name: "Upload Artifacts"
+      uses: actions/upload-artifact@v3
+      with:
+          name: ${{ inputs.data }}
+          path: ${ inputs.data }}
+          retention-days: 14

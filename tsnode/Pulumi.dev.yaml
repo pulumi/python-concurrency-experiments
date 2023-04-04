@@ -1,0 +1,4 @@
+config:
+  aws-native:region: us-east-2
+  ts-control:resource_count: "256"
+  ts-control:resource_payload_bytes: "8"
