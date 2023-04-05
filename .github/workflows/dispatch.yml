@@ -1,4 +1,4 @@
-name: Run Performance Metrics Cron Job
+name: Performance Analysis Experiments
 on:
   workflow_dispatch:
     inputs:
@@ -22,6 +22,7 @@ on:
         description: "The groups to include in this experiment, comma separated."
         required: true
         type: string
+        default: "control,experimental"
       data:
         description: "The file path for the captured data."
         default: "experimental-data.json"
@@ -40,9 +41,23 @@ jobs:
     - name: "Download Pulumi Source"
       uses: actions/checkout@v3
       with:
+        path: "pulumi"
         repository: 'pulumi/pulumi'
+    - name: "Checkout Repo Code"
+      uses: actions/checkout@v3
+      with:
+        path: "experiments"
+    - name: "Setup Go"
+      uses: "actions/setup-go@v3"
+    - name: "Setup Node"
+      uses: "actions/setup-node@v3"
+      with:
+        node-version: 16
+        cache: "yarn"
+        cache-dependency-path: "pulumi/sdk/node/yarn.lock"
     - name: "Run Experiment"
       run: ./scripts/ci.bash
+      working-directory: "experiments"
       env:
         WARMUP_RUNS: ${{ inputs.warmups }}
         SAMPLES: ${{ inputs.samples }}
@@ -55,5 +70,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
           name: ${{ inputs.data }}
-          path: ${ inputs.data }}
+          path: "experiments/${ inputs.data }}"
           retention-days: 14
