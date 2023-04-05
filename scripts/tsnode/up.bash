@@ -15,7 +15,7 @@ function run_project {
   unset PULUMI_SKIP_CHECKPOINTS
   unset PULUMI_OPTIMIZED_CHECKPOINT_PATCH
 
-  PROJECT_DIR="tsnode"
+  PROJECT_DIR="${EXPERIMENT}"
 
   pushd $(pwd)
   

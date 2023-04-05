@@ -9,7 +9,7 @@ readonly GROUP="$2"
 
 function main {
   # PROJECT_DIR is the location of the source code.
-  PROJECT_DIR="tsnode"
+  PROJECT_DIR="${EXPERIMENT}"
   # Ensure no variables from previous experiments are set.
   unset PULUMI_CONFIG_PASSPHRASE
   unset PULUMI_EXPERIMENTAL
