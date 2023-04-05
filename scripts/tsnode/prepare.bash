@@ -43,7 +43,7 @@ function checkout_tsnode() {
 function checkout_swc() {
     pushd $(pwd)
     cd "${WORKSPACE}"
-    git switch "origin/mckinstry/mckinstry/swc-tsnode" --detach
+    git switch "origin/mckinstry/swc-tsnode" --detach
     make ensure && make build && make install
     popd
 }
