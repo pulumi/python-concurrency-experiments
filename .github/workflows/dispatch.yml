@@ -1,4 +1,5 @@
 name: Performance Analysis Experiments
+run-name: "Experiment '${{ inputs.experiment }}' by @${{ github.actor }}"
 on:
   workflow_dispatch:
     inputs:
@@ -54,7 +55,7 @@ jobs:
       with:
         node-version: 16
         cache: "yarn"
-        cache-dependency-path: "pulumi/sdk/node/yarn.lock"
+        cache-dependency-path: "pulumi/sdk/nodejs/yarn.lock"
     - name: "Run Experiment"
       run: ./scripts/ci.bash
       working-directory: "experiments"
