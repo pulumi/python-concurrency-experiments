@@ -43,12 +43,12 @@ jobs:
     - name: "Download Pulumi Source"
       uses: actions/checkout@v3
       with:
-        path: "${{ env.GITHUB_WORKSPACE }}/pulumi"
+        path: "${{ github.workspace }}/pulumi"
         repository: 'pulumi/pulumi'
     - name: "Checkout Repo Code"
       uses: actions/checkout@v3
       with:
-        path: "${{ env.GITHUB_WORKSPACE }}/experiments"
+        path: "${{ github.workspace }}/experiments"
     - name: "Setup Go"
       uses: "actions/setup-go@v3"
     - name: "Setup Node"
@@ -59,7 +59,7 @@ jobs:
         cache-dependency-path: "pulumi/sdk/nodejs/yarn.lock"
     - name: "Run Experiment"
       run: ./scripts/ci.bash
-      working-directory: "${{ env.GITHUB_WORKSPACE }}/experiments"
+      working-directory: "${{ github.workspace }}/experiments"
       env:
         WARMUP_RUNS: ${{ inputs.warmups }}
         SAMPLES: ${{ inputs.samples }}
@@ -68,10 +68,10 @@ jobs:
         DATA_FILE: ${{ inputs.data }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        PULUMI_SRC: "${{ env.GITHUB_WORKSPACE }}/experiments/pulumi" # location of the source code.
+        PULUMI_SRC: "${{ github.workspace }}/experiments/pulumi" # location of the source code.
     - name: "Upload Artifacts"
       uses: actions/upload-artifact@v3
       with:
           name: ${{ inputs.data }}
-          path: "${{ env.GITHUB_WORKSPACE }}/experiments/${ inputs.data }}"
+          path: "${{ github.workspace }}/experiments/${ inputs.data }}"
           retention-days: 14
