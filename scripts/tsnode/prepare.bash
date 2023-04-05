@@ -40,7 +40,7 @@ function checkout_tsnode() {
     popd
 }
 
-function checkout_tsnode() {
+function checkout_swc() {
     pushd $(pwd)
     cd "${WORKSPACE}"
     git switch "origin/mckinstry/mckinstry/swc-tsnode" --detach
