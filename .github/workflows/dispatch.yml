@@ -51,7 +51,9 @@ jobs:
       with:
         path: "${{ github.workspace }}/experiments"
     - name: "Setup Go"
-      uses: "actions/setup-go@v3"
+      uses: "actions/setup-go@v4"
+      with:
+        go-version: 'stable'
     - name: "Setup Node"
       uses: "actions/setup-node@v3"
       with:
