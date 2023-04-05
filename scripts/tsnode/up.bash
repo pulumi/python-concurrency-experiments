@@ -14,6 +14,13 @@ function run_project {
   unset PULUMI_EXPERIMENTAL
   unset PULUMI_SKIP_CHECKPOINTS
   unset PULUMI_OPTIMIZED_CHECKPOINT_PATCH
+  unset PULUMI_NODEJS_TRANSPILE_ONLY
+  
+  # Control Group: AWS Native on Master.
+  if [ "${GROUP}" == "transpileOnly" ]
+  then
+    export PULUMI_NODEJS_TRANSPILE_ONLY="true"
+  fi
 
   PROJECT_DIR="${EXPERIMENT}"
 

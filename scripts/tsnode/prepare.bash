@@ -40,6 +40,14 @@ function checkout_tsnode() {
     popd
 }
 
+function checkout_tsnode() {
+    pushd $(pwd)
+    cd "${WORKSPACE}"
+    git switch "origin/mckinstry/mckinstry/swc-tsnode" --detach
+    make ensure && make build && make install
+    popd
+}
+
 function main {
   # PROJECT_DIR is the location of the source code.
   PROJECT_DIR="${EXPERIMENT}"
@@ -48,6 +56,7 @@ function main {
   unset PULUMI_EXPERIMENTAL
   unset PULUMI_SKIP_CHECKPOINTS
   unset PULUMI_OPTIMIZED_CHECKPOINT_PATCH
+  unset PULUMI_NODEJS_TRANSPILE_ONLY
   
   # Control Group: AWS Native on Master.
   if [ "${GROUP}" == "control" ]
@@ -56,6 +65,9 @@ function main {
   elif [ "${GROUP}" == "experimental" ]
   then
     checkout_tsnode
+  elif [ "${GROUP}" == "transpileOnly" ]
+  then
+    checkout_swc
   elif [ "${GROUP}" == "slow" ]
   then
     checkout_slow
