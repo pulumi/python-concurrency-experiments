@@ -53,7 +53,7 @@ function main {
   if [ "${GROUP}" == "control" ]
   then
     checkout_master
-  elif [ "${GROUP}" == "tsnode" ]
+  elif [ "${GROUP}" == "experimental" ]
   then
     checkout_tsnode
   elif [ "${GROUP}" == "slow" ]

@@ -7,7 +7,7 @@ set -exuo pipefail
 export EXPERIMENT="tsnode"
 readonly WARMUP_RUNS="3"
 readonly SAMPLE_SIZE="10"
-readonly EXPERIMENTS="control,tsnode,slow"
+readonly EXPERIMENTS="control,experimental,slow"
 # readonly RESOURCE_COUNT="64,128,256"
 readonly RESOURCE_COUNT="256"
 
