@@ -4,8 +4,8 @@ set -exuo pipefail
 
 # Select the correct Pulumi binary.
 PULUMI_EXEC="${HOME}/.pulumi-dev/bin/pulumi"
-readonly WORKSPACE="${HOME}/workspace/pulumi/pulumi"
-readonly GROUP="$1"
+readonly WORKSPACE="$1"
+readonly GROUP="$2"
 
 function main {
   # PROJECT_DIR is the location of the source code.

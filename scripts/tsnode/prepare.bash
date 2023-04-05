@@ -4,9 +4,9 @@ set -exuo pipefail
 
 # Select the correct Pulumi binary.
 readonly PULUMI_EXEC="${HOME}/.pulumi-dev/bin/pulumi"
-readonly WORKSPACE="$HOME/workspace/pulumi/pulumi"
-readonly GROUP="$1"
-readonly RESOURCE_COUNT="$2"
+readonly WORKSPACE="$1"
+readonly GROUP="$2"
+readonly RESOURCE_COUNT=1
 
 # Make sure we're using the correct version of the NodeJS runtime.
 function build_node_runtime() {

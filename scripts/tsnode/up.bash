@@ -4,9 +4,9 @@ set -exuo pipefail
 
 # Select the correct Pulumi binary.
 readonly PULUMI_EXEC="${HOME}/.pulumi-dev/bin/pulumi"
-readonly WORKSPACE="${HOME}/workspace/pulumi/pulumi"
-readonly GROUP="$1"
-readonly RESOURCE_COUNT="$2"
+readonly WORKSPACE="$1"
+readonly GROUP="$2"
+readonly RESOURCE_COUNT=1
 
 function run_project {
   # Ensure no variables from previous experiments are set.
