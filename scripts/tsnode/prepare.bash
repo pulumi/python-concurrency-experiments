@@ -73,7 +73,7 @@ function main {
   yarn link "@pulumi/pulumi"
 
   # Set the resource count.
-  "${PULUMI_EXEC}" config set ts-control:resource_count "${RESOURCE_COUNT}"
+  "${PULUMI_EXEC}" config set --stack=dev ts-control:resource_count "${RESOURCE_COUNT}"
 
   # Destroy any resources from the last round of experiments.
   "${PULUMI_EXEC}" destroy --yes --non-interactive --stack=dev --skip-preview
