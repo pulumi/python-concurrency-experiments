@@ -69,6 +69,9 @@ function main {
   
   echo "Preparing ${GROUP}"
 
+  # Link the newly build Pulumi SDK.
+  yarn link "@pulumi/pulumi"
+
   # Set the resource count.
   "${PULUMI_EXEC}" config set ts-control:resource_count "${RESOURCE_COUNT}"
 
