@@ -35,6 +35,7 @@ env:
 
 jobs:
   run-experiment:
+    name: "Experiment '${{ inputs.experiment }}' by @${{ github.actor }}"
     runs-on: ubuntu-latest
     steps:
     - name: "Install Hyperfine"
