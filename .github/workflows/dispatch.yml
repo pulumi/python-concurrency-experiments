@@ -85,5 +85,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
           name: ${{ inputs.data }}
-          path: "${{ github.workspace }}/experiments/${ inputs.data }}"
+          path: "${{ github.workspace }}/experiments/${{ inputs.data }}"
           retention-days: 14
