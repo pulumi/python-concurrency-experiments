@@ -68,7 +68,8 @@ jobs:
         DATA_FILE: ${{ inputs.data }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        PULUMI_SRC: "${{ github.workspace }}/experiments/pulumi" # location of the source code.
+        PULUMI_SRC: "${{ github.workspace }}/pulumi" # location of the source code.
+        EXPERIMENT_SRC: "${{ github.workspace }}/experiments" # location of the source code.
     - name: "Upload Artifacts"
       uses: actions/upload-artifact@v3
       with:
