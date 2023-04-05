@@ -19,7 +19,7 @@ function build_node_runtime() {
 function checkout_master() {
     pushd $(pwd)
     cd "${WORKSPACE}"
-    git checkout "master"
+    git switch "master"
     make ensure && make build && make install
     popd
 }
@@ -27,7 +27,7 @@ function checkout_master() {
 function checkout_slow() {
     pushd $(pwd)
     cd "${WORKSPACE}"
-    git checkout "mckinstry/ts-node-expected-slow"
+    git switch "mckinstry/ts-node-expected-slow"
     make ensure && make build && make install
     popd
 }
@@ -35,7 +35,7 @@ function checkout_slow() {
 function checkout_tsnode() {
     pushd $(pwd)
     cd "${WORKSPACE}"
-    git checkout "mckinstry/perf-test-ts-node"
+    git switch "mckinstry/perf-test-ts-node"
     make ensure && make build && make install
     popd
 }
