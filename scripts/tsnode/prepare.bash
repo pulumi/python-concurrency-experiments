@@ -72,6 +72,9 @@ function main {
   # Link the newly build Pulumi SDK.
   yarn link "@pulumi/pulumi"
 
+  # Create the stack if it does not exist.
+  "${PULUMI_EXEC}" stack init --stack=dev --non-interactive || true
+
   # Set the resource count.
   "${PULUMI_EXEC}" config set --stack=dev ts-control:resource_count "${RESOURCE_COUNT}"
 

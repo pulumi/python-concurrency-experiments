@@ -6,29 +6,34 @@ on:
       experiment:
         description: 'The name of the experiment to run'
         required: true
-        type: choice
+        type: "choice"
         options:
-        - tsnode
+        - "tsnode"
       warmups:
         description: 'The number of warmup runs'
         required: true
-        type: string
+        type: "string"
         default: "3"
       samples:
         description: 'The number of samples collected'
         required: true
-        type: string
+        type: "string"
         default: "20"
       groups:
         description: "The groups to include in this experiment, comma separated."
         required: true
-        type: string
+        type: "string"
         default: "control,experimental"
       data:
         description: "The file path for the captured data."
         default: "experimental-data.json"
-        type: string
+        type: "string"
         required: true
+      #stack:
+      #  description: "The name of the stack to test."
+      #  required: true
+      #  default: "dev"
+      #  type: "string"
 
 env:
   HYPERFINE_VERSION: v1.16.1
