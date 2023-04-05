@@ -51,9 +51,9 @@ jobs:
       with:
         path: "${{ github.workspace }}/pulumi"
         repository: 'pulumi/pulumi'
-    #- name: "Fetch Origin Branches"
-    #  run: git fetch origin master:master
-    #  working-directory: "${{ github.workspace }}/pulumi"
+    - name: "Fetch Origin Branches"
+      run: git fetch origin
+      working-directory: "${{ github.workspace }}/pulumi"
     - name: "Checkout Repo Code"
       uses: actions/checkout@v3
       with:
