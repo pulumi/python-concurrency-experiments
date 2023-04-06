@@ -76,6 +76,7 @@ function main {
 
   # Link the newly build Pulumi SDK.
   yarn link "@pulumi/pulumi"
+  yarn install
 
   # Login to the filestate backend.
   "${PULUMI_EXEC}" login --local
