@@ -80,6 +80,8 @@ function main {
   create_bucket
   login_s3
 
+  yarn install
+
   # Create the stack if it does not exist.
   "${PULUMI_EXEC}" stack init --stack=dev --non-interactive || true
 
