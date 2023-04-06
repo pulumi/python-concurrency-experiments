@@ -40,6 +40,7 @@ on:
 env:
   HYPERFINE_VERSION: v1.16.1
   PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+  AWS_REGION: us-east-2 # Default region.
 
 jobs:
   run-experiment:
