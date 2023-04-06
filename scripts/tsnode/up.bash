@@ -10,7 +10,6 @@ readonly RESOURCE_COUNT=1
 
 function run_project {
   # Ensure no variables from previous experiments are set.
-  unset PULUMI_CONFIG_PASSPHRASE
   unset PULUMI_EXPERIMENTAL
   unset PULUMI_SKIP_CHECKPOINTS
   unset PULUMI_OPTIMIZED_CHECKPOINT_PATCH

@@ -52,7 +52,6 @@ function main {
   # PROJECT_DIR is the location of the source code.
   PROJECT_DIR="${EXPERIMENT}"
   # Ensure no variables from previous experiments are set.
-  unset PULUMI_CONFIG_PASSPHRASE
   unset PULUMI_EXPERIMENTAL
   unset PULUMI_SKIP_CHECKPOINTS
   unset PULUMI_OPTIMIZED_CHECKPOINT_PATCH
