@@ -9,16 +9,17 @@ on:
         type: "choice"
         options:
         - "tsnode"
+        - "transpile-only"
       warmups:
         description: 'The number of warmup runs'
         required: true
         type: "string"
-        default: "3"
+        default: "1"
       samples:
         description: 'The number of samples collected'
         required: true
         type: "string"
-        default: "20"
+        default: "10"
       groups:
         description: "The groups to include in this experiment, comma separated."
         required: true
