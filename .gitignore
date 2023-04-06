@@ -3,3 +3,5 @@ __pycache__
 */statefile/*
 */.terraform*
 */terraform.tfstate*
+
+*/node_modules/
