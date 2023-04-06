@@ -15,6 +15,7 @@ function main {
   unset PULUMI_EXPERIMENTAL
   unset PULUMI_SKIP_CHECKPOINTS
   unset PULUMI_OPTIMIZED_CHECKPOINT_PATCH
+  unset PULUMI_NODEJS_TRANSPILE_ONLY
 
   # Now, step into the project folder and run the experiment.
   pushd $(pwd)
