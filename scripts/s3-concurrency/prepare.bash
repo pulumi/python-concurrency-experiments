@@ -16,6 +16,18 @@ function checkout_master() {
     popd
 }
 
+function create_bucket() {
+  aws s3 mb 's3://mckinstry-perf-testing'
+}
+
+function delete_bucket() {
+  aws s3 rb --force 's3://mckinstry-perf-testing'
+}
+
+function login_s3() {
+  "${PULUMI_EXEC}" login 's3://mckinstry-perf-testing'
+}
+
 function main {
   # PROJECT_DIR is the location of the source code.
   PROJECT_DIR="${EXPERIMENT}"
@@ -42,9 +54,9 @@ function main {
   
   echo "Preparing ${GROUP}"
 
-  # Login to the filestate backend.
-  # TODO: This needs to point to an S3 bucket.
-  "${PULUMI_EXEC}" login --local
+  delete_bucket
+  create_bucket
+  login_s3
 
   # Create the stack if it does not exist.
   "${PULUMI_EXEC}" stack init --stack=dev --non-interactive || true

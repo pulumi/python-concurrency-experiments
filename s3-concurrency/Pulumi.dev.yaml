@@ -1,2 +1,4 @@
+encryptionsalt: v1:YvwMVfaLiKg=:v1:lbWYrxPW1NYZFD2/:Q2XwCBJAIT8gJVRyFh7HMjMc+YkavQ==
 config:
   aws:region: us-east-2
+  s3-concurrency:resource_count: "64"

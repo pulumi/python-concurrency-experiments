@@ -6,7 +6,7 @@ set -exuo pipefail
 
 export EXPERIMENT="s3-concurrency"
 readonly WARMUP_RUNS="1"
-readonly SAMPLE_SIZE="10"
+readonly SAMPLE_SIZE="1"
 readonly EXPERIMENTS="control,experimental"
 readonly RESOURCE_COUNT="64,128,256"
 readonly PULUMI_SRC_PATH="${PULUMI_SRC}" # Expecting the directory of the source code.
