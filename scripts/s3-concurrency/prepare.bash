@@ -26,7 +26,7 @@ function checkout_concurrency() {
 
 function create_bucket() {
   aws s3 mb 's3://mckinstry-perf-testing'
-  sleep 3
+  sleep 8
 }
 
 function delete_bucket() {
