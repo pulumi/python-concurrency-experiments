@@ -81,6 +81,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         PULUMI_SRC: "${{ github.workspace }}/pulumi" # location of the source code.
         EXPERIMENT_SRC: "${{ github.workspace }}/experiments" # location of the source code.
+        PULUMI_CONFIG_PASSPHRASE: "password"
     - name: "Upload Artifacts"
       uses: actions/upload-artifact@v3
       with:
