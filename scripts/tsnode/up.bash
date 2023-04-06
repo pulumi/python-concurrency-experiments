@@ -15,6 +15,7 @@ function run_project {
   unset PULUMI_SKIP_CHECKPOINTS
   unset PULUMI_OPTIMIZED_CHECKPOINT_PATCH
   unset PULUMI_NODEJS_TRANSPILE_ONLY
+  unset PULUMI_ACCESS_TOKEN
   
   if [ "${GROUP}" == "transpileOnly" ]
   then

@@ -10,6 +10,9 @@ readonly PULUMI_SRC_PATH="${PULUMI_SRC}"
 #     downstream scripts know where the source code is to compile.
 
 function main {
+  # Make sure we have to log in via the filestate backend.
+  unset PULUMI_ACCESS_TOKEN
+
   hyperfine \
     --warmup="${WARMUP_RUNS}" \
     --runs="${SAMPLES}" \

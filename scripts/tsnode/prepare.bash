@@ -57,6 +57,7 @@ function main {
   unset PULUMI_SKIP_CHECKPOINTS
   unset PULUMI_OPTIMIZED_CHECKPOINT_PATCH
   unset PULUMI_NODEJS_TRANSPILE_ONLY
+  unset PULUMI_ACCESS_TOKEN
   
   # Control Group: AWS Native on Master.
   if [ "${GROUP}" == "control" ]
@@ -83,6 +84,9 @@ function main {
 
   # Link the newly build Pulumi SDK.
   yarn link "@pulumi/pulumi"
+
+  # Login to the filestate backend.
+  "${PULUMI_EXEC}" login --local
 
   # Create the stack if it does not exist.
   "${PULUMI_EXEC}" stack init --stack=dev --non-interactive || true
