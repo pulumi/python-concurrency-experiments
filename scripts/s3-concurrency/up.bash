@@ -6,7 +6,6 @@ set -exuo pipefail
 readonly PULUMI_EXEC="${HOME}/.pulumi-dev/bin/pulumi"
 readonly WORKSPACE="$1"
 readonly GROUP="$2"
-readonly RESOURCE_COUNT=1
 
 function run_project {
   # Ensure no variables from previous experiments are set.
@@ -15,6 +14,22 @@ function run_project {
   unset PULUMI_OPTIMIZED_CHECKPOINT_PATCH
   unset PULUMI_NODEJS_TRANSPILE_ONLY
   unset PULUMI_ACCESS_TOKEN
+
+  unset CONCURRENCY_MULTIPLIER
+
+  if [ "${GROUP}" == "experimental" ]
+  then
+    export CONCURRENCY_MULTIPLER="1"
+  elif [ "${GROUP}" == "2x" ]
+  then
+    export CONCURRENCY_MULTIPLER="2"
+  elif [ "${GROUP}" == "4x" ]
+  then
+    export CONCURRENCY_MULTIPLER="4"
+  elif [ "${GROUP}" == "8x" ]
+  then
+    export CONCURRENCY_MULTIPLER="8"
+  fi
   
   PROJECT_DIR="${EXPERIMENT}"
 
