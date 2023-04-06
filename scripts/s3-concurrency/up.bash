@@ -19,16 +19,16 @@ function run_project {
 
   if [ "${GROUP}" == "experimental" ]
   then
-    export CONCURRENCY_MULTIPLER="1"
+    export CONCURRENCY_MULTIPLIER="1"
   elif [ "${GROUP}" == "2x" ]
   then
-    export CONCURRENCY_MULTIPLER="2"
+    export CONCURRENCY_MULTIPLIER="2"
   elif [ "${GROUP}" == "4x" ]
   then
-    export CONCURRENCY_MULTIPLER="4"
+    export CONCURRENCY_MULTIPLIER="4"
   elif [ "${GROUP}" == "8x" ]
   then
-    export CONCURRENCY_MULTIPLER="8"
+    export CONCURRENCY_MULTIPLIER="8"
   fi
   
   PROJECT_DIR="${EXPERIMENT}"

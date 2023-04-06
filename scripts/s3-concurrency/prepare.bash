@@ -26,10 +26,11 @@ function checkout_concurrency() {
 
 function create_bucket() {
   aws s3 mb 's3://mckinstry-perf-testing'
+  sleep 3
 }
 
 function delete_bucket() {
-  aws s3 rb --force 's3://mckinstry-perf-testing'
+  aws s3 rb --force 's3://mckinstry-perf-testing' || true
 }
 
 function login_s3() {
@@ -45,6 +46,7 @@ function main {
   unset PULUMI_OPTIMIZED_CHECKPOINT_PATCH
   unset PULUMI_NODEJS_TRANSPILE_ONLY
   unset PULUMI_ACCESS_TOKEN
+  unset CONCURRENCY_MULTIPLIER
   
   # Control Group: AWS Native on Master.
   if [ "${GROUP}" == "control" ]
@@ -52,6 +54,20 @@ function main {
     checkout_master
   else
     checkout_concurrency
+  fi
+
+  if [ "${GROUP}" == "experimental" ]
+  then
+    export CONCURRENCY_MULTIPLIER="1"
+  elif [ "${GROUP}" == "2x" ]
+  then
+    export CONCURRENCY_MULTIPLIER="2"
+  elif [ "${GROUP}" == "4x" ]
+  then
+    export CONCURRENCY_MULTIPLIER="4"
+  elif [ "${GROUP}" == "8x" ]
+  then
+    export CONCURRENCY_MULTIPLIER="8"
   fi
 
   # Now, step into the project folder and run the experiment.

@@ -8,7 +8,7 @@ readonly WORKSPACE="$1"
 readonly GROUP="$2"
 
 function delete_bucket() {
-  aws s3 rb --force 's3://mckinstry-perf-testing'
+  aws s3 rb --force 's3://mckinstry-perf-testing' || true
 }
 
 function logout() {
@@ -23,6 +23,20 @@ function main {
   unset PULUMI_SKIP_CHECKPOINTS
   unset PULUMI_OPTIMIZED_CHECKPOINT_PATCH
   unset PULUMI_NODEJS_TRANSPILE_ONLY
+
+  if [ "${GROUP}" == "experimental" ]
+  then
+    export CONCURRENCY_MULTIPLIER="1"
+  elif [ "${GROUP}" == "2x" ]
+  then
+    export CONCURRENCY_MULTIPLIER="2"
+  elif [ "${GROUP}" == "4x" ]
+  then
+    export CONCURRENCY_MULTIPLIER="4"
+  elif [ "${GROUP}" == "8x" ]
+  then
+    export CONCURRENCY_MULTIPLIER="8"
+  fi
 
   # Now, step into the project folder and run the experiment.
   pushd $(pwd)
