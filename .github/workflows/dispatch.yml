@@ -11,6 +11,7 @@ on:
         - "tsnode"
         - "tsnode-aws"
         - "transpile-only"
+        - "s3-concurrency"
       warmups:
         description: 'The number of warmup runs'
         required: true
