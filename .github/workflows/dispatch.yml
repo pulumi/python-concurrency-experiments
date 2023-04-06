@@ -9,6 +9,7 @@ on:
         type: "choice"
         options:
         - "tsnode"
+        - "tsnode-aws"
         - "transpile-only"
       warmups:
         description: 'The number of warmup runs'
