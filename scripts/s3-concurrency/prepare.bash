@@ -6,7 +6,7 @@ set -exuo pipefail
 readonly PULUMI_EXEC="${HOME}/.pulumi-dev/bin/pulumi"
 readonly WORKSPACE="$1"
 readonly GROUP="$2"
-readonly RESOURCE_COUNT="64"
+readonly RESOURCE_COUNT="128"
 
 function checkout_master() {
     pushd $(pwd)
